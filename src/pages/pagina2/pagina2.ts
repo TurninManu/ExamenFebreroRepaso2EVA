@@ -19,7 +19,10 @@ import { Nota } from '../../modelo/nota';
 })
 export class Pagina2Page implements JsonServerProviderListener{
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14c1690... ejercicio 4 casi terminado
   usuario:Usuario;
   asignaturaSelec:Asignatura;
 
@@ -79,6 +82,7 @@ export class Pagina2Page implements JsonServerProviderListener{
     alert.present();
   }
 
+<<<<<<< HEAD
   borrarNota(indice:number){
     const alert =  this.alertController.create({
       title: '¿Seguro que desea eliminar la nota?',
@@ -160,4 +164,6 @@ export class Pagina2Page implements JsonServerProviderListener{
     
   }
 
+=======
+>>>>>>> 14c1690... ejercicio 4 casi terminado
 }

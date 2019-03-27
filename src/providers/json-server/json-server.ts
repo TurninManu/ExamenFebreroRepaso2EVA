@@ -34,6 +34,7 @@ export class JsonServerProvider {
   }
 
   addNota(alumno:Usuario){
+<<<<<<< HEAD
     this.actualizarNota(alumno, 0);
   }
 
@@ -42,6 +43,8 @@ export class JsonServerProvider {
   }
 
   actualizarNota(alumno:Usuario, opcion:number){
+=======
+>>>>>>> 14c1690... ejercicio 4 casi terminado
     let data=JSON.stringify(alumno);
     let header={"headers":{"Content-Type":"application/json"}};
     return new Promise(resolve=>{
@@ -49,6 +52,7 @@ export class JsonServerProvider {
       .subscribe(
           data=>{
               resolve(data['_body']);
+<<<<<<< HEAD
               if(opcion==0){
                 this.listener.onAddNotaResponse(alumno,null);
               }else{
@@ -70,6 +74,20 @@ export class JsonServerProvider {
   })
 
   }
+=======
+              this.listener.onAddNotaResponse(alumno,null);
+          },_error=>{
+              this.listener.onAddNotaResponse(null,"ERROR al añadir la persona: "+_error);
+              console.log("ERROR al añadir la persona: "+_error);
+          }
+      );
+  }).catch(err=>{
+      console.log("ERROR: añadiendo la nota en addNota() de json-server.ts");
+      
+  })
+  }
+  
+>>>>>>> 14c1690... ejercicio 4 casi terminado
 }
 
 export interface JsonServerProviderListenerLogin{
@@ -78,5 +96,8 @@ export interface JsonServerProviderListenerLogin{
 
 export interface JsonServerProviderListener{
   onAddNotaResponse(alumno:Usuario, error:string)
+<<<<<<< HEAD
   ondeleteNotaResponse(alumno:Usuario, error:string)
+=======
+>>>>>>> 14c1690... ejercicio 4 casi terminado
 }

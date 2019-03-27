@@ -25,6 +25,7 @@
   </ion-list>
 
   <ion-list  *ngIf="asignaturaSelec!=null">
+<<<<<<< HEAD
     <ion-item-sliding *ngFor="let n of asignaturaSelec.notas;index as i" >
       <ion-item>
         {{n.fecha}} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{n.nota}}
@@ -34,6 +35,12 @@
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
+=======
+    <ion-item-sliding *ngFor="let n of asignaturaSelec.notas" >
+      <ion-item>
+        {{n.fecha}} &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{n.nota}}
+      </ion-item>
+>>>>>>> 14c1690... ejercicio 4 casi terminado
     </ion-item-sliding>
   </ion-list>
 </ion-content>

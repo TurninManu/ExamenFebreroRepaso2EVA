@@ -38,7 +38,7 @@ export class Pagina2Page implements JsonServerProviderListener{
   }
 
   public addNota(asig:Asignatura, indice:number){
-    //obtenemos la fecha actual.
+    //obtenemos la fecha actual
     let date=new Date().toDateString();
     //datepipe nos transforma la fecha al formato indicado (tenemos que añadirlo al constructor y a providers en app.module.ts)
     let fecha:string =this.datepipe.transform(date, 'yyyy-MM-dd');

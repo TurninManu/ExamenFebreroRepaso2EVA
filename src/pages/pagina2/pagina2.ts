@@ -20,7 +20,6 @@ import { DatePipe } from '@angular/common';
 })
 export class Pagina2Page implements JsonServerProviderListener{
 
-
   usuario:Usuario;
   asignaturaSelec:Asignatura;
 
@@ -71,9 +70,8 @@ export class Pagina2Page implements JsonServerProviderListener{
         }, {
           text: 'Ok',
           handler: data => {
-            let usrAux:Usuario=this.usuario;
-            usrAux.asignaturas[indice].notas.push(new Nota(data.fecha, data.nota))
-            this.jsonserverprovider.addNota(usrAux);
+            this.usuario.asignaturas[indice].notas.push(new Nota(data.fecha, data.nota))
+            this.jsonserverprovider.addNota(this.usuario);
             console.log('Confirm Ok');
           }
         }
@@ -108,6 +106,7 @@ export class Pagina2Page implements JsonServerProviderListener{
     alert.present();
   }
 
+
   onAddNotaResponse(alumno:Usuario, error:string){
     if(error==null){
       //se añade la nota
@@ -134,4 +133,5 @@ export class Pagina2Page implements JsonServerProviderListener{
     
   }
 
+  
 }

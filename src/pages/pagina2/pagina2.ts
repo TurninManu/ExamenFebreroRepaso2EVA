@@ -1,9 +1,10 @@
-import { JsonServerProviderListener } from './../../providers/json-server/json-server';
+import { JsonServerProviderListener, JsonServerProvider } from './../../providers/json-server/json-server';
 import { Asignatura } from './../../modelo/asignatura';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { Usuario } from '../../modelo/usuario';
 import { Nota } from '../../modelo/nota';
+import { DatePipe } from '@angular/common';
 
 /**
  * Generated class for the Pagina2Page page.
@@ -23,8 +24,9 @@ export class Pagina2Page implements JsonServerProviderListener{
   asignaturaSelec:Asignatura;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertController: AlertController ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public jsonserverprovider:JsonServerProvider, public alertController: AlertController, public toastController:ToastController, public datepipe: DatePipe ) {
     this.usuario=navParams.get("usuario");
+    this.jsonserverprovider.setListener(this);
   }
 
   ionViewDidLoad() {
@@ -37,9 +39,10 @@ export class Pagina2Page implements JsonServerProviderListener{
 
   public addNota(asig:Asignatura, indice:number){
     //obtenemos la fecha actual
-    let fecha:string=new Date().toLocaleDateString();
+    let date=new Date().toDateString();
+    //datepipe nos transforma la fecha al formato indicado (tenemos que añadirlo al constructor y a providers en app.module.ts)
+    let fecha:string =this.datepipe.transform(date, 'yyyy-MM-dd');
 
-    console.log(fecha);
     const alert =  this.alertController.create({
       title: asig.asignatura,
       inputs: [
@@ -69,6 +72,7 @@ export class Pagina2Page implements JsonServerProviderListener{
           handler: data => {
             let usrAux:Usuario=this.usuario;
             usrAux.asignaturas[indice].notas.push(new Nota(data.fecha, data.nota))
+            this.jsonserverprovider.addNota(usrAux);
             console.log('Confirm Ok');
           }
         }
@@ -79,6 +83,15 @@ export class Pagina2Page implements JsonServerProviderListener{
   }
 
   onAddNotaResponse(alumno:Usuario, error:string){
+    if(error==null){
+      //se añade la nota
+    }else{
+      const toast = this.toastController.create({
+        message: error,
+        duration: 2000
+      });
+      toast.present();
+    }
     
   }
 

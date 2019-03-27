@@ -5,7 +5,7 @@ import { Usuario } from '../../modelo/usuario';
 
 @Injectable()
 export class JsonServerProvider {
-  URL="http://localhost:8080/";
+  URL="http://localhost:3000/";
   listenerLogin:JsonServerProviderListenerLogin
   listener:JsonServerProviderListener
 
@@ -37,7 +37,7 @@ export class JsonServerProvider {
     let data=JSON.stringify(alumno);
     let header={"headers":{"Content-Type":"application/json"}};
     return new Promise(resolve=>{
-      this.http.post(this.URL+"alumnos/"+alumno.id,data,header)
+      this.http.put(this.URL+"alumnos/"+alumno.id,data,header)
       .subscribe(
           data=>{
               resolve(data['_body']);

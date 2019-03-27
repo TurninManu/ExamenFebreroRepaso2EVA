@@ -83,6 +83,7 @@ export class Pagina2Page implements JsonServerProviderListener{
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   borrarNota(indice:number){
     const alert =  this.alertController.create({
       title: '¿Seguro que desea eliminar la nota?',
@@ -108,10 +109,13 @@ export class Pagina2Page implements JsonServerProviderListener{
     alert.present();
   }
 
+=======
+>>>>>>> 0eb1014... resolución problema en página2.ts
   onAddNotaResponse(alumno:Usuario, error:string){
     
   }
 
+<<<<<<< HEAD
   ondeleteNotaResponse(alumno:Usuario, error:string){
     if(error==null){
       //se borra la nota
@@ -166,4 +170,6 @@ export class Pagina2Page implements JsonServerProviderListener{
 
 =======
 >>>>>>> 14c1690... ejercicio 4 casi terminado
+=======
+>>>>>>> 0eb1014... resolución problema en página2.ts
 }

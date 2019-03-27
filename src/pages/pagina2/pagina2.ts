@@ -78,4 +78,8 @@ export class Pagina2Page implements JsonServerProviderListener{
     alert.present();
   }
 
+  onAddNotaResponse(alumno:Usuario, error:string){
+    
+  }
+
 }

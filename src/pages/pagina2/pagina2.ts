@@ -134,4 +134,17 @@ export class Pagina2Page implements JsonServerProviderListener{
     
   }
 
+  ondeleteNotaResponse(alumno:Usuario, error:string){
+    if(error==null){
+      //se borra la nota
+    }else{
+      const toast = this.toastController.create({
+        message: error,
+        duration: 2000
+      });
+      toast.present();
+    }
+    
+  }
+
 }

@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
 })
 export class Pagina2Page implements JsonServerProviderListener{
 
+
   usuario:Usuario;
   asignaturaSelec:Asignatura;
 
@@ -82,9 +83,47 @@ export class Pagina2Page implements JsonServerProviderListener{
     alert.present();
   }
 
+  borrarNota(indice:number){
+    const alert =  this.alertController.create({
+      title: '¿Seguro que desea eliminar la nota?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Sí',
+          handler: () => {
+            this.asignaturaSelec.notas.splice(indice, 1);
+            this.jsonserverprovider.deleteNota(this.usuario);
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
   onAddNotaResponse(alumno:Usuario, error:string){
     if(error==null){
       //se añade la nota
+    }else{
+      const toast = this.toastController.create({
+        message: error,
+        duration: 2000
+      });
+      toast.present();
+    }
+    
+  }
+
+  ondeleteNotaResponse(alumno:Usuario, error:string){
+    if(error==null){
+      //se borra la nota
     }else{
       const toast = this.toastController.create({
         message: error,

@@ -31,9 +31,9 @@ import { DatePipe } from '@angular/common';
   providers: [
     StatusBar,
     SplashScreen,
-    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    JsonServerProvider
+    JsonServerProvider,
+    DatePipe
   ]
 })
 export class AppModule {}

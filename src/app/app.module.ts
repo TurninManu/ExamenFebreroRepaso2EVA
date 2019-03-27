@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { JsonServerProvider } from '../providers/json-server/json-server';
 import { HttpClientModule } from '@angular/common/http';
 import { Pagina2Page } from '../pages/pagina2/pagina2';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { Pagina2Page } from '../pages/pagina2/pagina2';
   providers: [
     StatusBar,
     SplashScreen,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 <<<<<<< HEAD
     JsonServerProvider,

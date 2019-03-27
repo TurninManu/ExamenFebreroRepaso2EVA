@@ -34,6 +34,14 @@ export class JsonServerProvider {
   }
 
   addNota(alumno:Usuario){
+    this.actualizarNota(alumno, 0);
+  }
+
+  deleteNota(alumno:Usuario){
+    this.actualizarNota(alumno, 1);
+  }
+
+  actualizarNota(alumno:Usuario, opcion:number){
     let data=JSON.stringify(alumno);
     let header={"headers":{"Content-Type":"application/json"}};
     return new Promise(resolve=>{
@@ -41,18 +49,27 @@ export class JsonServerProvider {
       .subscribe(
           data=>{
               resolve(data['_body']);
-              this.listener.onAddNotaResponse(alumno,null);
+              if(opcion==0){
+                this.listener.onAddNotaResponse(alumno,null);
+              }else{
+                this.listener.ondeleteNotaResponse(alumno,null);
+              }
           },_error=>{
-              this.listener.onAddNotaResponse(null,"ERROR al añadir la persona: "+_error);
-              console.log("ERROR al añadir la persona: "+_error);
+            //si opcion es 0 se trata de una operación de añadir, si es 1 se trata de borrar
+              if(opcion==0){
+                this.listener.onAddNotaResponse(null,"ERROR al añadir la nota: "+_error);
+                console.log("ERROR al añadir la nota: "+_error);
+              }else
+                this.listener.ondeleteNotaResponse(null,"ERROR al borrar la nota: "+_error);
+                console.log("ERROR al borrar la nota: "+_error);
           }
       );
   }).catch(err=>{
-      console.log("ERROR: añadiendo la nota en addNota() de json-server.ts");
+      console.log("ERROR: actualizando la nota en actualizarNota() de json-server.ts");
       
   })
+
   }
-  
 }
 
 export interface JsonServerProviderListenerLogin{
@@ -61,4 +78,5 @@ export interface JsonServerProviderListenerLogin{
 
 export interface JsonServerProviderListener{
   onAddNotaResponse(alumno:Usuario, error:string)
+  ondeleteNotaResponse(alumno:Usuario, error:string)
 }

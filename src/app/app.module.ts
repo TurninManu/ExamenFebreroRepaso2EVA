@@ -31,7 +31,8 @@ import { Pagina2Page } from '../pages/pagina2/pagina2';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    JsonServerProvider
+    JsonServerProvider,
+    DatePipe
   ]
 })
 export class AppModule {}
